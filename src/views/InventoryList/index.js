@@ -10,11 +10,19 @@ class InventoryList extends Component {
 
     this.state = {
       dropdownOpen: false,
+      primary: false,
       success: false,
+      warning: false,
+      danger: false,
+      info: false,
       radioSelected: 2,
     };
     
+    this.togglePrimary = this.togglePrimary.bind(this);
     this.toggleSuccess = this.toggleSuccess.bind(this);
+    this.toggleWarning = this.toggleWarning.bind(this);
+    this.toggleDanger = this.toggleDanger.bind(this);
+    this.toggleInfo = this.toggleInfo.bind(this);
   }
 
   toggle() {
@@ -23,9 +31,33 @@ class InventoryList extends Component {
     });
   }
 
+  togglePrimary() {
+    this.setState({
+      primary: !this.state.primary,
+    });
+  }
+
   toggleSuccess() {
     this.setState({
       success: !this.state.success,
+    });
+  }
+
+  toggleWarning() {
+    this.setState({
+      warning: !this.state.warning,
+    });
+  }
+
+  toggleDanger() {
+    this.setState({
+      danger: !this.state.danger,
+    });
+  }
+
+  toggleInfo() {
+    this.setState({
+      info: !this.state.info,
     });
   }
 
@@ -94,10 +126,10 @@ class InventoryList extends Component {
                       </td>
                       <td><a href="https://www.youtube.com/">Grapha</a></td>
                       <td>
-                      <Button color="success" onClick={this.toggleSuccess} className="mr-1">Order Now</Button>
+                      <Button color="success" onClick={this.toggleInfo} className="mr-1">Order Now</Button>
                       </td>
-                      <Modal isOpen={this.state.success} toggle={this.toggleSuccess} className={'modal-success ' + this.props.className}>
-                        <ModalHeader toggle={this.toggleSuccess}>Modal title</ModalHeader>
+                      <Modal isOpen={this.state.info} toggle={this.toggleInfo} className={'modal-success ' + this.props.className}>
+                        <ModalHeader toggle={this.toggleInfo}>Modal title</ModalHeader>
                         <ModalBody>
                           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
                           et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -106,8 +138,8 @@ class InventoryList extends Component {
                           culpa qui officia deserunt mollit anim id est laborum.
                         </ModalBody>
                         <ModalFooter>
-                          <Button color="success" onClick={this.toggleSuccess}>Do Something</Button>{' '}
-                          <Button color="secondary" onClick={this.toggleSuccess}>Cancel</Button>
+                          <Button color="success" onClick={this.toggleInfo}>Do Something</Button>{' '}
+                          <Button color="secondary" onClick={this.toggleInfo}>Cancel</Button>
                         </ModalFooter>
                       </Modal>
                     </tr>
@@ -120,10 +152,10 @@ class InventoryList extends Component {
                       </td>
                       <td><a href="https://www.youtube.com/">Grapha</a></td>
                       <td>
-                      <Button color="success" onClick={this.toggleSuccess} className="mr-1">Order Now</Button>
+                      <Button color="success" onClick={this.toggleDanger} className="mr-1">Order Now</Button>
                       </td>
-                      <Modal isOpen={this.state.success} toggle={this.toggleSuccess} className={'modal-success ' + this.props.className}>
-                        <ModalHeader toggle={this.toggleSuccess}>Modal title</ModalHeader>
+                      <Modal isOpen={this.state.danger} toggle={this.toggleDanger} className={'modal-success ' + this.props.className}>
+                        <ModalHeader toggle={this.toggleDanger}>Modal title</ModalHeader>
                         <ModalBody>
                           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
                           et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -132,8 +164,8 @@ class InventoryList extends Component {
                           culpa qui officia deserunt mollit anim id est laborum.
                         </ModalBody>
                         <ModalFooter>
-                          <Button color="success" onClick={this.toggleSuccess}>Do Something</Button>{' '}
-                          <Button color="secondary" onClick={this.toggleSuccess}>Cancel</Button>
+                          <Button color="success" onClick={this.toggleDanger}>Do Something</Button>{' '}
+                          <Button color="secondary" onClick={this.toggleDanger}>Cancel</Button>
                         </ModalFooter>
                       </Modal>
                     </tr>
@@ -146,10 +178,10 @@ class InventoryList extends Component {
                       </td>
                       <td><a href="https://www.youtube.com/">Grapha</a></td>
                       <td>
-                      <Button color="success" onClick={this.toggleSuccess} className="mr-1">Order Now</Button>
+                      <Button color="success" onClick={this.togglePrimary} className="mr-1">Order Now</Button>
                       </td>
-                      <Modal isOpen={this.state.success} toggle={this.toggleSuccess} className={'modal-success ' + this.props.className}>
-                        <ModalHeader toggle={this.toggleSuccess}>Modal title</ModalHeader>
+                      <Modal isOpen={this.state.primary} toggle={this.togglePrimary} className={'modal-success ' + this.props.className}>
+                        <ModalHeader toggle={this.togglePrimary}>Modal title</ModalHeader>
                         <ModalBody>
                           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
                           et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -158,8 +190,8 @@ class InventoryList extends Component {
                           culpa qui officia deserunt mollit anim id est laborum.
                         </ModalBody>
                         <ModalFooter>
-                          <Button color="success" onClick={this.toggleSuccess}>Do Something</Button>{' '}
-                          <Button color="secondary" onClick={this.toggleSuccess}>Cancel</Button>
+                          <Button color="success" onClick={this.togglePrimary}>Do Something</Button>{' '}
+                          <Button color="secondary" onClick={this.togglePrimary}>Cancel</Button>
                         </ModalFooter>
                       </Modal>
                     </tr>
