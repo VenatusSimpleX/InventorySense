@@ -416,7 +416,7 @@ const mainChartOpts = {
     mode: 'index',
     position: 'nearest',
     callbacks: {
-      labelColor: function (tooltipItem, chart) {
+      labelColor: function(tooltipItem, chart) {
         return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor }
       }
     }
@@ -500,8 +500,8 @@ class Dashboard extends Component {
                     </DropdownMenu>
                   </ButtonDropdown>
                 </ButtonGroup>
-                <div className="text-value">RM12,823</div>
-                <div>Total Sales</div>
+                <div className="text-value">9.823</div>
+                <div>Members online</div>
               </CardBody>
               <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
                 <Line data={cardChartData2} options={cardChartOpts2} height={70} />
@@ -524,8 +524,8 @@ class Dashboard extends Component {
                     </DropdownMenu>
                   </Dropdown>
                 </ButtonGroup>
-                <div className="text-value">RM5,515</div>
-                <div>Total Costs</div>
+                <div className="text-value">9.823</div>
+                <div>Members online</div>
               </CardBody>
               <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
                 <Line data={cardChartData1} options={cardChartOpts1} height={70} />
@@ -548,8 +548,8 @@ class Dashboard extends Component {
                     </DropdownMenu>
                   </Dropdown>
                 </ButtonGroup>
-                <div className="text-value">RM7,308</div>
-                <div>Total Profit</div>
+                <div className="text-value">9.823</div>
+                <div>Members online</div>
               </CardBody>
               <div className="chart-wrapper" style={{ height: '70px' }}>
                 <Line data={cardChartData3} options={cardChartOpts3} height={70} />
@@ -572,8 +572,8 @@ class Dashboard extends Component {
                     </DropdownMenu>
                   </ButtonDropdown>
                 </ButtonGroup>
-                <div className="text-value">223</div>
-                <div>Products Sold</div>
+                <div className="text-value">9.823</div>
+                <div>Members online</div>
               </CardBody>
               <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
                 <Bar data={cardChartData4} options={cardChartOpts4} height={70} />
@@ -587,7 +587,7 @@ class Dashboard extends Component {
               <CardBody>
                 <Row>
                   <Col sm="5">
-                    <CardTitle className="mb-0">Revenue vs Costs</CardTitle>
+                    <CardTitle className="mb-0">Traffic</CardTitle>
                     <div className="small text-muted">November 2015</div>
                   </Col>
                   <Col sm="7" className="d-none d-sm-inline-block">
@@ -605,11 +605,80 @@ class Dashboard extends Component {
                   <Line data={mainChart} options={mainChartOpts} height={300} />
                 </div>
               </CardBody>
+              <CardFooter>
+                <Row className="text-center">
+                  <Col sm={12} md className="mb-sm-2 mb-0">
+                    <div className="text-muted">Visits</div>
+                    <strong>29.703 Users (40%)</strong>
+                    <Progress className="progress-xs mt-2" color="success" value="40" />
+                  </Col>
+                  <Col sm={12} md className="mb-sm-2 mb-0 d-md-down-none">
+                    <div className="text-muted">Unique</div>
+                    <strong>24.093 Users (20%)</strong>
+                    <Progress className="progress-xs mt-2" color="info" value="20" />
+                  </Col>
+                  <Col sm={12} md className="mb-sm-2 mb-0">
+                    <div className="text-muted">Pageviews</div>
+                    <strong>78.706 Views (60%)</strong>
+                    <Progress className="progress-xs mt-2" color="warning" value="60" />
+                  </Col>
+                  <Col sm={12} md className="mb-sm-2 mb-0">
+                    <div className="text-muted">New Users</div>
+                    <strong>22.123 Users (80%)</strong>
+                    <Progress className="progress-xs mt-2" color="danger" value="80" />
+                  </Col>
+                  <Col sm={12} md className="mb-sm-2 mb-0 d-md-down-none">
+                    <div className="text-muted">Bounce Rate</div>
+                    <strong>Average Rate (40.15%)</strong>
+                    <Progress className="progress-xs mt-2" color="primary" value="40" />
+                  </Col>
+                </Row>
+              </CardFooter>
             </Card>
           </Col>
         </Row>
 
+        <Row>
+          <Col xs="6" sm="6" lg="3">
+            <Suspense fallback={this.loading()}>
+              <Widget03 dataBox={() => ({ variant: 'facebook', friends: '89k', feeds: '459' })} >
+                <div className="chart-wrapper">
+                  <Line data={makeSocialBoxData(0)} options={socialChartOpts} height={90} />
+                </div>
+              </Widget03>
+            </Suspense>
+          </Col>
 
+          <Col xs="6" sm="6" lg="3">
+            <Suspense fallback={this.loading()}>
+              <Widget03 dataBox={() => ({ variant: 'twitter', followers: '973k', tweets: '1.792' })} >
+                <div className="chart-wrapper">
+                  <Line data={makeSocialBoxData(1)} options={socialChartOpts} height={90} />
+                </div>
+              </Widget03>
+            </Suspense>
+          </Col>
+
+          <Col xs="6" sm="6" lg="3">
+            <Suspense fallback={this.loading()}>
+              <Widget03 dataBox={() => ({ variant: 'linkedin', contacts: '500+', feeds: '292' })} >
+                <div className="chart-wrapper">
+                  <Line data={makeSocialBoxData(2)} options={socialChartOpts} height={90} />
+                </div>
+              </Widget03>
+            </Suspense>
+          </Col>
+
+          <Col xs="6" sm="6" lg="3">
+            <Suspense fallback={this.loading()}>
+              <Widget03 dataBox={() => ({ variant: 'google-plus', followers: '894', circles: '92' })} >
+                <div className="chart-wrapper">
+                  <Line data={makeSocialBoxData(3)} options={socialChartOpts} height={90} />
+                </div>
+              </Widget03>
+            </Suspense>
+          </Col>
+        </Row>
 
         <Row>
           <Col>
@@ -657,7 +726,7 @@ class Dashboard extends Component {
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
-                          Tuesday
+                        Tuesday
                         </span>
                       </div>
                       <div className="progress-group-bars">
@@ -668,7 +737,7 @@ class Dashboard extends Component {
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
-                          Wednesday
+                        Wednesday
                         </span>
                       </div>
                       <div className="progress-group-bars">
@@ -679,7 +748,7 @@ class Dashboard extends Component {
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
-                          Thursday
+                        Thursday
                         </span>
                       </div>
                       <div className="progress-group-bars">
@@ -690,7 +759,7 @@ class Dashboard extends Component {
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
-                          Friday
+                        Friday
                         </span>
                       </div>
                       <div className="progress-group-bars">
@@ -701,7 +770,7 @@ class Dashboard extends Component {
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
-                          Saturday
+                        Saturday
                         </span>
                       </div>
                       <div className="progress-group-bars">
@@ -712,7 +781,7 @@ class Dashboard extends Component {
                     <div className="progress-group mb-4">
                       <div className="progress-group-prepend">
                         <span className="progress-group-text">
-                          Sunday
+                        Sunday
                         </span>
                       </div>
                       <div className="progress-group-bars">
@@ -817,7 +886,7 @@ class Dashboard extends Component {
                       </div>
                       <div className="divider text-center">
                         <Button color="link" size="sm" className="text-muted" data-toggle="tooltip" data-placement="top"
-                          title="" data-original-title="show more"><i className="icon-options"></i></Button>
+                                title="" data-original-title="show more"><i className="icon-options"></i></Button>
                       </div>
                     </ul>
                   </Col>
@@ -825,227 +894,227 @@ class Dashboard extends Component {
                 <br />
                 <Table hover responsive className="table-outline mb-0 d-none d-sm-table">
                   <thead className="thead-light">
-                    <tr>
-                      <th className="text-center"><i className="icon-people"></i></th>
-                      <th>User</th>
-                      <th className="text-center">Country</th>
-                      <th>Usage</th>
-                      <th className="text-center">Payment Method</th>
-                      <th>Activity</th>
-                    </tr>
+                  <tr>
+                    <th className="text-center"><i className="icon-people"></i></th>
+                    <th>User</th>
+                    <th className="text-center">Country</th>
+                    <th>Usage</th>
+                    <th className="text-center">Payment Method</th>
+                    <th>Activity</th>
+                  </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td className="text-center">
-                        <div className="avatar">
-                          <img src={'assets/img/avatars/1.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
-                          <span className="avatar-status badge-success"></span>
-                        </div>
-                      </td>
-                      <td>
-                        <div>Yiorgos Avraamu</div>
-                        <div className="small text-muted">
-                          <span>New</span> | Registered: Jan 1, 2015
+                  <tr>
+                    <td className="text-center">
+                      <div className="avatar">
+                        <img src={'assets/img/avatars/1.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                        <span className="avatar-status badge-success"></span>
                       </div>
-                      </td>
-                      <td className="text-center">
-                        <i className="flag-icon flag-icon-us h4 mb-0" title="us" id="us"></i>
-                      </td>
-                      <td>
-                        <div className="clearfix">
-                          <div className="float-left">
-                            <strong>50%</strong>
-                          </div>
-                          <div className="float-right">
-                            <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
-                          </div>
+                    </td>
+                    <td>
+                      <div>Yiorgos Avraamu</div>
+                      <div className="small text-muted">
+                        <span>New</span> | Registered: Jan 1, 2015
+                      </div>
+                    </td>
+                    <td className="text-center">
+                      <i className="flag-icon flag-icon-us h4 mb-0" title="us" id="us"></i>
+                    </td>
+                    <td>
+                      <div className="clearfix">
+                        <div className="float-left">
+                          <strong>50%</strong>
                         </div>
-                        <Progress className="progress-xs" color="success" value="50" />
-                      </td>
-                      <td className="text-center">
-                        <i className="fa fa-cc-mastercard" style={{ fontSize: 24 + 'px' }}></i>
-                      </td>
-                      <td>
-                        <div className="small text-muted">Last login</div>
-                        <strong>10 sec ago</strong>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center">
-                        <div className="avatar">
-                          <img src={'assets/img/avatars/2.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
-                          <span className="avatar-status badge-danger"></span>
+                        <div className="float-right">
+                          <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
                         </div>
-                      </td>
-                      <td>
-                        <div>Avram Tarasios</div>
-                        <div className="small text-muted">
+                      </div>
+                      <Progress className="progress-xs" color="success" value="50" />
+                    </td>
+                    <td className="text-center">
+                      <i className="fa fa-cc-mastercard" style={{ fontSize: 24 + 'px' }}></i>
+                    </td>
+                    <td>
+                      <div className="small text-muted">Last login</div>
+                      <strong>10 sec ago</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-center">
+                      <div className="avatar">
+                        <img src={'assets/img/avatars/2.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                        <span className="avatar-status badge-danger"></span>
+                      </div>
+                    </td>
+                    <td>
+                      <div>Avram Tarasios</div>
+                      <div className="small text-muted">
 
-                          <span>Recurring</span> | Registered: Jan 1, 2015
+                        <span>Recurring</span> | Registered: Jan 1, 2015
                       </div>
-                      </td>
-                      <td className="text-center">
-                        <i className="flag-icon flag-icon-br h4 mb-0" title="br" id="br"></i>
-                      </td>
-                      <td>
-                        <div className="clearfix">
-                          <div className="float-left">
-                            <strong>10%</strong>
-                          </div>
-                          <div className="float-right">
-                            <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
-                          </div>
+                    </td>
+                    <td className="text-center">
+                      <i className="flag-icon flag-icon-br h4 mb-0" title="br" id="br"></i>
+                    </td>
+                    <td>
+                      <div className="clearfix">
+                        <div className="float-left">
+                          <strong>10%</strong>
                         </div>
-                        <Progress className="progress-xs" color="info" value="10" />
-                      </td>
-                      <td className="text-center">
-                        <i className="fa fa-cc-visa" style={{ fontSize: 24 + 'px' }}></i>
-                      </td>
-                      <td>
-                        <div className="small text-muted">Last login</div>
-                        <strong>5 minutes ago</strong>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center">
-                        <div className="avatar">
-                          <img src={'assets/img/avatars/3.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
-                          <span className="avatar-status badge-warning"></span>
+                        <div className="float-right">
+                          <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
                         </div>
-                      </td>
-                      <td>
-                        <div>Quintin Ed</div>
-                        <div className="small text-muted">
-                          <span>New</span> | Registered: Jan 1, 2015
                       </div>
-                      </td>
-                      <td className="text-center">
-                        <i className="flag-icon flag-icon-in h4 mb-0" title="in" id="in"></i>
-                      </td>
-                      <td>
-                        <div className="clearfix">
-                          <div className="float-left">
-                            <strong>74%</strong>
-                          </div>
-                          <div className="float-right">
-                            <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
-                          </div>
-                        </div>
-                        <Progress className="progress-xs" color="warning" value="74" />
-                      </td>
-                      <td className="text-center">
-                        <i className="fa fa-cc-stripe" style={{ fontSize: 24 + 'px' }}></i>
-                      </td>
-                      <td>
-                        <div className="small text-muted">Last login</div>
-                        <strong>1 hour ago</strong>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center">
-                        <div className="avatar">
-                          <img src={'assets/img/avatars/4.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
-                          <span className="avatar-status badge-secondary"></span>
-                        </div>
-                      </td>
-                      <td>
-                        <div>Enéas Kwadwo</div>
-                        <div className="small text-muted">
-                          <span>New</span> | Registered: Jan 1, 2015
+                      <Progress className="progress-xs" color="info" value="10" />
+                    </td>
+                    <td className="text-center">
+                      <i className="fa fa-cc-visa" style={{ fontSize: 24 + 'px' }}></i>
+                    </td>
+                    <td>
+                      <div className="small text-muted">Last login</div>
+                      <strong>5 minutes ago</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-center">
+                      <div className="avatar">
+                        <img src={'assets/img/avatars/3.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                        <span className="avatar-status badge-warning"></span>
                       </div>
-                      </td>
-                      <td className="text-center">
-                        <i className="flag-icon flag-icon-fr h4 mb-0" title="fr" id="fr"></i>
-                      </td>
-                      <td>
-                        <div className="clearfix">
-                          <div className="float-left">
-                            <strong>98%</strong>
-                          </div>
-                          <div className="float-right">
-                            <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
-                          </div>
-                        </div>
-                        <Progress className="progress-xs" color="danger" value="98" />
-                      </td>
-                      <td className="text-center">
-                        <i className="fa fa-paypal" style={{ fontSize: 24 + 'px' }}></i>
-                      </td>
-                      <td>
-                        <div className="small text-muted">Last login</div>
-                        <strong>Last month</strong>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center">
-                        <div className="avatar">
-                          <img src={'assets/img/avatars/5.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
-                          <span className="avatar-status badge-success"></span>
-                        </div>
-                      </td>
-                      <td>
-                        <div>Agapetus Tadeáš</div>
-                        <div className="small text-muted">
-                          <span>New</span> | Registered: Jan 1, 2015
+                    </td>
+                    <td>
+                      <div>Quintin Ed</div>
+                      <div className="small text-muted">
+                        <span>New</span> | Registered: Jan 1, 2015
                       </div>
-                      </td>
-                      <td className="text-center">
-                        <i className="flag-icon flag-icon-es h4 mb-0" title="es" id="es"></i>
-                      </td>
-                      <td>
-                        <div className="clearfix">
-                          <div className="float-left">
-                            <strong>22%</strong>
-                          </div>
-                          <div className="float-right">
-                            <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
-                          </div>
+                    </td>
+                    <td className="text-center">
+                      <i className="flag-icon flag-icon-in h4 mb-0" title="in" id="in"></i>
+                    </td>
+                    <td>
+                      <div className="clearfix">
+                        <div className="float-left">
+                          <strong>74%</strong>
                         </div>
-                        <Progress className="progress-xs" color="info" value="22" />
-                      </td>
-                      <td className="text-center">
-                        <i className="fa fa-google-wallet" style={{ fontSize: 24 + 'px' }}></i>
-                      </td>
-                      <td>
-                        <div className="small text-muted">Last login</div>
-                        <strong>Last week</strong>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center">
-                        <div className="avatar">
-                          <img src={'assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
-                          <span className="avatar-status badge-danger"></span>
+                        <div className="float-right">
+                          <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
                         </div>
-                      </td>
-                      <td>
-                        <div>Friderik Dávid</div>
-                        <div className="small text-muted">
-                          <span>New</span> | Registered: Jan 1, 2015
                       </div>
-                      </td>
-                      <td className="text-center">
-                        <i className="flag-icon flag-icon-pl h4 mb-0" title="pl" id="pl"></i>
-                      </td>
-                      <td>
-                        <div className="clearfix">
-                          <div className="float-left">
-                            <strong>43%</strong>
-                          </div>
-                          <div className="float-right">
-                            <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
-                          </div>
+                      <Progress className="progress-xs" color="warning" value="74" />
+                    </td>
+                    <td className="text-center">
+                      <i className="fa fa-cc-stripe" style={{ fontSize: 24 + 'px' }}></i>
+                    </td>
+                    <td>
+                      <div className="small text-muted">Last login</div>
+                      <strong>1 hour ago</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-center">
+                      <div className="avatar">
+                        <img src={'assets/img/avatars/4.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                        <span className="avatar-status badge-secondary"></span>
+                      </div>
+                    </td>
+                    <td>
+                      <div>Enéas Kwadwo</div>
+                      <div className="small text-muted">
+                        <span>New</span> | Registered: Jan 1, 2015
+                      </div>
+                    </td>
+                    <td className="text-center">
+                      <i className="flag-icon flag-icon-fr h4 mb-0" title="fr" id="fr"></i>
+                    </td>
+                    <td>
+                      <div className="clearfix">
+                        <div className="float-left">
+                          <strong>98%</strong>
                         </div>
-                        <Progress className="progress-xs" color="success" value="43" />
-                      </td>
-                      <td className="text-center">
-                        <i className="fa fa-cc-amex" style={{ fontSize: 24 + 'px' }}></i>
-                      </td>
-                      <td>
-                        <div className="small text-muted">Last login</div>
-                        <strong>Yesterday</strong>
-                      </td>
-                    </tr>
+                        <div className="float-right">
+                          <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
+                        </div>
+                      </div>
+                      <Progress className="progress-xs" color="danger" value="98" />
+                    </td>
+                    <td className="text-center">
+                      <i className="fa fa-paypal" style={{ fontSize: 24 + 'px' }}></i>
+                    </td>
+                    <td>
+                      <div className="small text-muted">Last login</div>
+                      <strong>Last month</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-center">
+                      <div className="avatar">
+                        <img src={'assets/img/avatars/5.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                        <span className="avatar-status badge-success"></span>
+                      </div>
+                    </td>
+                    <td>
+                      <div>Agapetus Tadeáš</div>
+                      <div className="small text-muted">
+                        <span>New</span> | Registered: Jan 1, 2015
+                      </div>
+                    </td>
+                    <td className="text-center">
+                      <i className="flag-icon flag-icon-es h4 mb-0" title="es" id="es"></i>
+                    </td>
+                    <td>
+                      <div className="clearfix">
+                        <div className="float-left">
+                          <strong>22%</strong>
+                        </div>
+                        <div className="float-right">
+                          <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
+                        </div>
+                      </div>
+                      <Progress className="progress-xs" color="info" value="22" />
+                    </td>
+                    <td className="text-center">
+                      <i className="fa fa-google-wallet" style={{ fontSize: 24 + 'px' }}></i>
+                    </td>
+                    <td>
+                      <div className="small text-muted">Last login</div>
+                      <strong>Last week</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-center">
+                      <div className="avatar">
+                        <img src={'assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                        <span className="avatar-status badge-danger"></span>
+                      </div>
+                    </td>
+                    <td>
+                      <div>Friderik Dávid</div>
+                      <div className="small text-muted">
+                        <span>New</span> | Registered: Jan 1, 2015
+                      </div>
+                    </td>
+                    <td className="text-center">
+                      <i className="flag-icon flag-icon-pl h4 mb-0" title="pl" id="pl"></i>
+                    </td>
+                    <td>
+                      <div className="clearfix">
+                        <div className="float-left">
+                          <strong>43%</strong>
+                        </div>
+                        <div className="float-right">
+                          <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
+                        </div>
+                      </div>
+                      <Progress className="progress-xs" color="success" value="43" />
+                    </td>
+                    <td className="text-center">
+                      <i className="fa fa-cc-amex" style={{ fontSize: 24 + 'px' }}></i>
+                    </td>
+                    <td>
+                      <div className="small text-muted">Last login</div>
+                      <strong>Yesterday</strong>
+                    </td>
+                  </tr>
                   </tbody>
                 </Table>
               </CardBody>
