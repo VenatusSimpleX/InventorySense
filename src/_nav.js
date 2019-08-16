@@ -10,6 +10,11 @@ export default {
       },
     },
     {
+      name: 'Inventory List',
+      url: '/inventorylist',
+      icon: 'icon-basket-loaded',
+    },
+    {
       title: true,
       name: 'Theme',
       wrapper: {            // optional wrapper object
