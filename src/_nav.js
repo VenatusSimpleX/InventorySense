@@ -156,8 +156,8 @@ export default {
       ],
     },
     {
-      name: 'Charts',
-      url: '/charts',
+      name: 'Item',
+      url: '/item',
       icon: 'icon-pie-chart',
     },
     {

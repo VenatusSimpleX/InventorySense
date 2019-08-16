@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Badge, Card, CardBody, CardHeader, Col, Modal, ModalBody, ModalFooter, ModalHeader, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class InventoryList extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class InventoryList extends Component {
       info: false,
       radioSelected: 2,
     };
-    
+
     this.togglePrimary = this.togglePrimary.bind(this);
     this.toggleSuccess = this.toggleSuccess.bind(this);
     this.toggleWarning = this.toggleWarning.bind(this);
@@ -67,175 +68,92 @@ class InventoryList extends Component {
     });
   }
 
+
+
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   render() {
-
+    const tableItems = [
+      {
+        name: "Egg",
+        itemCode: "123456789",
+        quantity: 40,
+        status: "Ordered"
+      },
+      {
+        name: "Ice Cream",
+        itemCode: "123456789",
+        quantity: 50,
+        status: "In Stock"
+      }
+    ]
     return (
       <div className="animated fadeIn">
         <Col xs="12" lg="7">
-              <Card>
-                <CardHeader>
-                  Inventory List
+          <Card>
+            <CardHeader>
+              Inventory List
                 </CardHeader>
-                <CardBody>
-                  <Table responsive striped>
-                    <thead>
-                    <tr>
-                      <th>Item Name</th>
-                      <th>Item Code</th>
-                      <th>Quantity</th>
-                      <th>Status</th>
-                      <th>Visualisation</th>
-                      <th>Actionable</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td>Egg</td>
-                      <td>18039503</td>
-                      <td>40 cartons</td>
-                      <td>
-                        <Badge color="primary">Ordered</Badge>
-                      </td>
-                      <td><a href="https://www.youtube.com/">Grapha</a></td>
-                      <td>
-                      <Button color="success" onClick={this.toggleSuccess} className="mr-1">Order Now</Button>
-                      </td>
-                      <Modal isOpen={this.state.success} toggle={this.toggleSuccess} className={'modal-success ' + this.props.className}>
-                        <ModalHeader toggle={this.toggleSuccess}>Modal title</ModalHeader>
-                        <ModalBody>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                          culpa qui officia deserunt mollit anim id est laborum.
-                        </ModalBody>
-                        <ModalFooter>
-                          <Button color="success" onClick={this.toggleSuccess}>Do Something</Button>{' '}
-                          <Button color="secondary" onClick={this.toggleSuccess}>Cancel</Button>
-                        </ModalFooter>
-                      </Modal>
-                    </tr>
-                    <tr>
-                      <td>Ice Cream</td>
-                      <td>11333224</td>
-                      <td>50 boxes</td>
-                      <td>
-                        <Badge color="success">In Stock</Badge>
-                      </td>
-                      <td><a href="https://www.youtube.com/">Grapha</a></td>
-                      <td>
-                      <Button color="success" onClick={this.toggleInfo} className="mr-1">Order Now</Button>
-                      </td>
-                      <Modal isOpen={this.state.info} toggle={this.toggleInfo} className={'modal-success ' + this.props.className}>
-                        <ModalHeader toggle={this.toggleInfo}>Modal title</ModalHeader>
-                        <ModalBody>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                          culpa qui officia deserunt mollit anim id est laborum.
-                        </ModalBody>
-                        <ModalFooter>
-                          <Button color="success" onClick={this.toggleInfo}>Do Something</Button>{' '}
-                          <Button color="secondary" onClick={this.toggleInfo}>Cancel</Button>
-                        </ModalFooter>
-                      </Modal>
-                    </tr>
-                    <tr>
-                      <td>Omurice</td>
-                      <td>55332144</td>
-                      <td>60 packs</td>
-                      <td>
-                        <Badge color="danger">Out of Stock</Badge>
-                      </td>
-                      <td><a href="https://www.youtube.com/">Grapha</a></td>
-                      <td>
-                      <Button color="success" onClick={this.toggleDanger} className="mr-1">Order Now</Button>
-                      </td>
-                      <Modal isOpen={this.state.danger} toggle={this.toggleDanger} className={'modal-success ' + this.props.className}>
-                        <ModalHeader toggle={this.toggleDanger}>Modal title</ModalHeader>
-                        <ModalBody>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                          culpa qui officia deserunt mollit anim id est laborum.
-                        </ModalBody>
-                        <ModalFooter>
-                          <Button color="success" onClick={this.toggleDanger}>Do Something</Button>{' '}
-                          <Button color="secondary" onClick={this.toggleDanger}>Cancel</Button>
-                        </ModalFooter>
-                      </Modal>
-                    </tr>
-                    <tr>
-                      <td>Rice</td>
-                      <td>77881293</td>
-                      <td>50 bags</td>
-                      <td>
-                        <Badge color="warning">Low on Stock</Badge>
-                      </td>
-                      <td><a href="https://www.youtube.com/">Grapha</a></td>
-                      <td>
-                      <Button color="success" onClick={this.togglePrimary} className="mr-1">Order Now</Button>
-                      </td>
-                      <Modal isOpen={this.state.primary} toggle={this.togglePrimary} className={'modal-success ' + this.props.className}>
-                        <ModalHeader toggle={this.togglePrimary}>Modal title</ModalHeader>
-                        <ModalBody>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                          culpa qui officia deserunt mollit anim id est laborum.
-                        </ModalBody>
-                        <ModalFooter>
-                          <Button color="success" onClick={this.togglePrimary}>Do Something</Button>{' '}
-                          <Button color="secondary" onClick={this.togglePrimary}>Cancel</Button>
-                        </ModalFooter>
-                      </Modal>
-                    </tr>
-                    <tr>
-                      <td>Pudding</td>
-                      <td>82931342</td>
-                      <td>200 carts</td>
-                      <td>
-                        <Badge color="danger">Out of Stock</Badge>
-                      </td>
-                      <td><a href="https://www.youtube.com/">Grapha</a></td>
-                      <td>
-                      <Button color="success" onClick={this.toggleSuccess} className="mr-1">Order Now</Button>
-                      </td>
-                      <Modal isOpen={this.state.success} toggle={this.toggleSuccess} className={'modal-success ' + this.props.className}>
-                        <ModalHeader toggle={this.toggleSuccess}>Modal title</ModalHeader>
-                        <ModalBody>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                          culpa qui officia deserunt mollit anim id est laborum.
-                        </ModalBody>
-                        <ModalFooter>
-                          <Button color="success" onClick={this.toggleSuccess}>Do Something</Button>{' '}
-                          <Button color="secondary" onClick={this.toggleSuccess}>Cancel</Button>
-                        </ModalFooter>
-                      </Modal>
-                    </tr>
-                    </tbody>
-                  </Table>
-                  <Pagination>
-                    <PaginationItem disabled><PaginationLink previous tag="button">Prev</PaginationLink></PaginationItem>
-                    <PaginationItem active>
-                      <PaginationLink tag="button">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">2</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">3</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink tag="button">4</PaginationLink></PaginationItem>
-                    <PaginationItem><PaginationLink next tag="button">Next</PaginationLink></PaginationItem>
-                  </Pagination>
-                </CardBody>
-              </Card>
+            <CardBody>
+              <Table responsive striped>
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Item Code</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Actionable</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tableItems.map((item, index) => {
+                    const itemLink = `/items/${item.itemCode}`
+                    return (
+                      <tr>
+                        <td><Link to={itemLink}>{item.name}</Link></td>
+                        <td>{item.itemCode}</td>
+                        <td>{item.quantity}</td>
+                        <td>
+                          {item.status === 'Ordered' && <Badge color="primary">Ordered</Badge>}
+                          {item.status === 'In Stock' && <Badge color="danger">Out of Stock</Badge>}
+                          {item.status === 'Out of Stock' && <Badge color="success">In Stock</Badge>}
+                          {item.status === 'Low on Stock' && <Badge color="warning">Low on Stock</Badge>}
+                        </td>
+                        <td>
+                          <Button color="success" onClick={this.toggleSuccess} className="mr-1">Order</Button>
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </Table>
+              <Pagination>
+                <PaginationItem disabled><PaginationLink previous tag="button">Prev</PaginationLink></PaginationItem>
+                <PaginationItem active>
+                  <PaginationLink tag="button">1</PaginationLink>
+                </PaginationItem>
+                <PaginationItem><PaginationLink tag="button">2</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink tag="button">3</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink tag="button">4</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink next tag="button">Next</PaginationLink></PaginationItem>
+              </Pagination>
+            </CardBody>
+          </Card>
         </Col>
+        <Modal isOpen={this.state.success} toggle={this.toggleSuccess} className={'modal-success ' + this.props.className}>
+          <ModalHeader toggle={this.toggleSuccess}>Modal title</ModalHeader>
+          <ModalBody>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+                        </ModalBody>
+          <ModalFooter>
+            <Button color="success" onClick={this.toggleSuccess}>Do Something</Button>{' '}
+            <Button color="secondary" onClick={this.toggleSuccess}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }
