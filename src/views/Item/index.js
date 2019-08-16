@@ -3,50 +3,47 @@ import { Line } from 'react-chartjs-2';
 import { Badge, Card, CardBody, CardHeader } from 'reactstrap';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 
+var s1 = {
+  label: 'Original',
+  borderColor: 'blue',
+  data: [
+    { x: '2017/01/07, 6:39:30 PM', y: 120 },
+    { x: '2017/01/07, 8:39:30 PM', y: 140 },
+    { x: '2017-01-08 18:39:28', y: 101 },
+  ]
+};
+
+var s2 = {
+  label: 'Statistics',
+  borderColor: 'yellow',
+  data: [
+    { x: '2017-01-07 18:00:00', y: 20 },
+    { x: '2017/01/07, 11:39:30 PM', y: 14 },
+    { x: '2017-01-08 18:00:00', y: 55 },
+  ]
+};
+
+var s3 = {
+  label: 'Machine Learning',
+  borderColor: 'red',
+  data: [
+    { x: '2017-01-07 18:00:00', y: 90 },
+    { x: '2017-01-08 18:00:00', y: 105 },
+  ]
+};
 const line = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      label: 'My First dataset',
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40],
-    }, {
-      label: 'Forecast (statistic)',
-      data: [50, 50, 50, 50, 80, 43, 23],
-      fill: false,
-      // Changes this dataset to become a line
-      type: 'line'
-    },
-    {
-      label: 'Forecast (ML)',
-      data: [55, 20, 30, 72, 30, 40, 50],
-      fill: false,
-      // Changes this dataset to become a line
-      type: 'line'
-    }
-  ],
+  datasets: [s1, s2, s3],
 };
 
 const options = {
   tooltips: {
     enabled: false,
     custom: CustomTooltips
+  },
+  scales: {
+    xAxes: [{
+      type: 'time'
+    }]
   },
   maintainAspectRatio: false
 }

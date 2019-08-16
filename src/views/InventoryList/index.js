@@ -115,7 +115,7 @@ class InventoryList extends Component {
                         <td>{item.quantity}</td>
                         <td>
                           {item.status === 'Ordered' && <Badge color="primary">Ordered</Badge>}
-                          {item.status === 'In Stock' && <Badge color="danger">Out of Stock</Badge>}
+                          {item.status === 'In stock' && <Badge color="danger">Out of Stock</Badge>}
                           {item.status === 'Out of Stock' && <Badge color="success">In Stock</Badge>}
                           {item.status === 'Low on Stock' && <Badge color="warning">Low on Stock</Badge>}
                         </td>
