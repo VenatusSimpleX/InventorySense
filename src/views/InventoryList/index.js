@@ -103,16 +103,12 @@ class InventoryList extends Component {
                       <Button color="success" onClick={this.toggleSuccess} className="mr-1">Order Now</Button>
                       </td>
                       <Modal isOpen={this.state.success} toggle={this.toggleSuccess} className={'modal-success ' + this.props.className}>
-                        <ModalHeader toggle={this.toggleSuccess}>Modal title</ModalHeader>
+                        <ModalHeader toggle={this.toggleSuccess}>Egg</ModalHeader>
                         <ModalBody>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                          culpa qui officia deserunt mollit anim id est laborum.
+                          Recommended Amount To Order
                         </ModalBody>
                         <ModalFooter>
-                          <Button color="success" onClick={this.toggleSuccess}>Do Something</Button>{' '}
+                          <Button color="success" onClick={this.toggleSuccess}>Place Order</Button>{' '}
                           <Button color="secondary" onClick={this.toggleSuccess}>Cancel</Button>
                         </ModalFooter>
                       </Modal>
@@ -129,16 +125,12 @@ class InventoryList extends Component {
                       <Button color="success" onClick={this.toggleInfo} className="mr-1">Order Now</Button>
                       </td>
                       <Modal isOpen={this.state.info} toggle={this.toggleInfo} className={'modal-success ' + this.props.className}>
-                        <ModalHeader toggle={this.toggleInfo}>Modal title</ModalHeader>
+                        <ModalHeader toggle={this.toggleInfo}>Ice Cream</ModalHeader>
                         <ModalBody>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                          culpa qui officia deserunt mollit anim id est laborum.
+                          Recommended Amount To Order
                         </ModalBody>
                         <ModalFooter>
-                          <Button color="success" onClick={this.toggleInfo}>Do Something</Button>{' '}
+                          <Button color="success" onClick={this.toggleInfo}>Place Order</Button>{' '}
                           <Button color="secondary" onClick={this.toggleInfo}>Cancel</Button>
                         </ModalFooter>
                       </Modal>
@@ -155,16 +147,12 @@ class InventoryList extends Component {
                       <Button color="success" onClick={this.toggleDanger} className="mr-1">Order Now</Button>
                       </td>
                       <Modal isOpen={this.state.danger} toggle={this.toggleDanger} className={'modal-success ' + this.props.className}>
-                        <ModalHeader toggle={this.toggleDanger}>Modal title</ModalHeader>
+                        <ModalHeader toggle={this.toggleDanger}>Omurice</ModalHeader>
                         <ModalBody>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                          culpa qui officia deserunt mollit anim id est laborum.
+                          Recommended Amount To Order
                         </ModalBody>
                         <ModalFooter>
-                          <Button color="success" onClick={this.toggleDanger}>Do Something</Button>{' '}
+                          <Button color="success" onClick={this.toggleDanger}>Place Order</Button>{' '}
                           <Button color="secondary" onClick={this.toggleDanger}>Cancel</Button>
                         </ModalFooter>
                       </Modal>
@@ -181,16 +169,12 @@ class InventoryList extends Component {
                       <Button color="success" onClick={this.togglePrimary} className="mr-1">Order Now</Button>
                       </td>
                       <Modal isOpen={this.state.primary} toggle={this.togglePrimary} className={'modal-success ' + this.props.className}>
-                        <ModalHeader toggle={this.togglePrimary}>Modal title</ModalHeader>
+                        <ModalHeader toggle={this.togglePrimary}>Rice</ModalHeader>
                         <ModalBody>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                          culpa qui officia deserunt mollit anim id est laborum.
+                          Recommended Amount To Order
                         </ModalBody>
                         <ModalFooter>
-                          <Button color="success" onClick={this.togglePrimary}>Do Something</Button>{' '}
+                          <Button color="success" onClick={this.togglePrimary}>Place Order</Button>{' '}
                           <Button color="secondary" onClick={this.togglePrimary}>Cancel</Button>
                         </ModalFooter>
                       </Modal>
@@ -204,20 +188,16 @@ class InventoryList extends Component {
                       </td>
                       <td><a href="https://www.youtube.com/">Grapha</a></td>
                       <td>
-                      <Button color="success" onClick={this.toggleSuccess} className="mr-1">Order Now</Button>
+                      <Button color="success" onClick={this.togglePrimary} className="mr-1">Order Now</Button>
                       </td>
-                      <Modal isOpen={this.state.success} toggle={this.toggleSuccess} className={'modal-success ' + this.props.className}>
-                        <ModalHeader toggle={this.toggleSuccess}>Modal title</ModalHeader>
+                      <Modal isOpen={this.state.primary} toggle={this.togglePrimary} className={'modal-success ' + this.props.className}>
+                        <ModalHeader toggle={this.togglePrimary}>Pudding</ModalHeader>
                         <ModalBody>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                          culpa qui officia deserunt mollit anim id est laborum.
+                          Recommended Amount To Order
                         </ModalBody>
                         <ModalFooter>
-                          <Button color="success" onClick={this.toggleSuccess}>Do Something</Button>{' '}
-                          <Button color="secondary" onClick={this.toggleSuccess}>Cancel</Button>
+                          <Button color="success" onClick={this.togglePrimary}>Place Order</Button>{' '}
+                          <Button color="secondary" onClick={this.togglePrimary}>Cancel</Button>
                         </ModalFooter>
                       </Modal>
                     </tr>
