@@ -82,9 +82,9 @@ class InventoryList extends Component {
       },
       {
         name: "Ice Cream",
-        itemCode: "123456789",
+        itemCode: "12349",
         quantity: 50,
-        status: "In Stock"
+        status: "In stock"
       }
     ]
     return (
@@ -107,7 +107,7 @@ class InventoryList extends Component {
                 </thead>
                 <tbody>
                   {tableItems.map((item, index) => {
-                    const itemLink = `/items/${item.itemCode}`
+                    const itemLink = `/item/${item.itemCode}`
                     return (
                       <tr>
                         <td><Link to={itemLink}>{item.name}</Link></td>
@@ -115,8 +115,8 @@ class InventoryList extends Component {
                         <td>{item.quantity}</td>
                         <td>
                           {item.status === 'Ordered' && <Badge color="primary">Ordered</Badge>}
-                          {item.status === 'In stock' && <Badge color="danger">Out of Stock</Badge>}
-                          {item.status === 'Out of Stock' && <Badge color="success">In Stock</Badge>}
+                          {item.status === 'Out of Stock' && <Badge color="danger">Out of Stock</Badge>}
+                          {item.status === 'In stock' && <Badge color="success">In Stock</Badge>}
                           {item.status === 'Low on Stock' && <Badge color="warning">Low on Stock</Badge>}
                         </td>
                         <td>

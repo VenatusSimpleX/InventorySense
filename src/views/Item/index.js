@@ -3,24 +3,47 @@ import { Line } from 'react-chartjs-2';
 import { Badge, Card, CardBody, CardHeader } from 'reactstrap';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 
+const payload = {
+  "original": [
+    {
+      "amount": 23,
+      "timestamp": "2017/01/07, 6:39:30 PM"
+    },
+    {
+      "amount": 43,
+      "timestamp": "2017/01/07, 8:39:30 PM"
+    },
+    {
+      "amount": 53,
+      "timestamp": "2017/01/07, 10:39:30 PM"
+    },
+    {
+      "amount": 13,
+      "timestamp": "2017/01/08, 3:39:30 PM"
+    },
+    {
+      "amount": 3,
+      "timestamp": "2017/01/08, 5:39:30 PM"
+    },
+    {
+      "amount": 20,
+      "timestamp": "2017/01/08, 6:39:30 PM"
+    },
+  ]
+}
+
 var s1 = {
   label: 'Original',
   borderColor: 'blue',
-  data: [
-    { x: '2017/01/07, 6:39:30 PM', y: 120 },
-    { x: '2017/01/07, 8:39:30 PM', y: 140 },
-    { x: '2017-01-08 18:39:28', y: 101 },
-  ]
+  data: []
 };
 
 var s2 = {
   label: 'Statistics',
   borderColor: 'yellow',
-  data: [
-    { x: '2017-01-07 18:00:00', y: 20 },
-    { x: '2017/01/07, 11:39:30 PM', y: 14 },
-    { x: '2017-01-08 18:00:00', y: 55 },
-  ]
+  data: [{ x: '2017/01/07, 6:39:30 PM', y: 120 },
+  { x: '2017/01/07, 8:39:30 PM', y: 140 },
+  { x: '2017-01-08 18:39:28', y: 101 },]
 };
 
 var s3 = {
@@ -48,7 +71,29 @@ const options = {
   maintainAspectRatio: false
 }
 
-class Charts extends Component {
+class Item extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: true
+    }
+  }
+  componentDidMount() {
+    console.log(this.props.match.params.id)
+    var arr = payload.original
+    for (var i = 0; i < arr.length; i++) {
+      var tempObj = {
+        x: arr[i].timestamp,
+        y: arr[i].amount
+      }
+      s1.data.push(tempObj)
+      if (i === arr.length - 1) {
+        this.setState({
+          loading: false
+        })
+      }
+    }
+  }
   render() {
     return (
       <div className="animated fadeIn">
@@ -74,11 +119,14 @@ class Charts extends Component {
               </a>
             </div>
           </CardHeader>
-          <CardBody>
-            <div className="chart-wrapper">
-              <Line data={line} options={options} />
-            </div>
-          </CardBody>
+          {
+            !this.state.loading && <CardBody>
+              <div className="chart-wrapper">
+                <Line data={line} options={options} />
+              </div>
+            </CardBody>
+          }
+
         </Card>
 
       </div>
@@ -86,4 +134,4 @@ class Charts extends Component {
   }
 }
 
-export default Charts;
+export default Item;
