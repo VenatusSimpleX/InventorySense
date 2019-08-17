@@ -2,61 +2,25 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Badge, Card, CardBody, CardHeader } from 'reactstrap';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
-
-const payload = {
-  "original": [
-    {
-      "amount": 23,
-      "timestamp": "2017/01/07, 6:39:30 PM"
-    },
-    {
-      "amount": 43,
-      "timestamp": "2017/01/07, 8:39:30 PM"
-    },
-    {
-      "amount": 53,
-      "timestamp": "2017/01/07, 10:39:30 PM"
-    },
-    {
-      "amount": 13,
-      "timestamp": "2017/01/08, 3:39:30 PM"
-    },
-    {
-      "amount": 3,
-      "timestamp": "2017/01/08, 5:39:30 PM"
-    },
-    {
-      "amount": 20,
-      "timestamp": "2017/01/08, 6:39:30 PM"
-    },
-  ]
-}
-
-var s1 = {
-  label: 'Original',
-  borderColor: 'blue',
-  data: []
-};
+import axios from 'axios'
 
 var s2 = {
   label: 'Statistics',
   borderColor: 'yellow',
-  data: [{ x: '2017/01/07, 6:39:30 PM', y: 120 },
-  { x: '2017/01/07, 8:39:30 PM', y: 140 },
-  { x: '2017-01-08 18:39:28', y: 101 },]
+  data: [{ x: '01/07/2019, 6:39:30 PM', y: 1 },
+  { x: '2019/5/07, 8:39:30 PM', y: 3 },
+  { x: '2019-11-08 18:39:28', y: 2 },]
 };
 
 var s3 = {
   label: 'Machine Learning',
   borderColor: 'red',
   data: [
-    { x: '2017-01-07 18:00:00', y: 90 },
-    { x: '2017-01-08 18:00:00', y: 105 },
+    { x: '2019-01-07 18:00:00', y: 1 },
+    { x: '2019-12-08 18:00:00', y: 3 },
   ]
 };
-const line = {
-  datasets: [s1, s2, s3],
-};
+
 
 const options = {
   tooltips: {
@@ -65,63 +29,128 @@ const options = {
   },
   scales: {
     xAxes: [{
-      type: 'time'
+      offset: true,
+      type: 'time',
+      time: {
+
+        min: "6/1/2019",
+        max: "6/31/2019"
+      }
     }]
   },
-  maintainAspectRatio: false
+  maintainAspectRatio: true
 }
 
 class Item extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: true
+      loading: true,
+      graphData: [],
+      tableData: [],
+      s1: {
+        label: 'Original',
+        borderColor: 'blue',
+        data: []
+      }
+
+    }
+  }
+
+  getItem = async (id) => {
+    var that = this;
+    try {
+      axios({
+        method: 'GET',
+        url: 'http://localhost:5000/api/inventory',
+
+      }).then(function (response) {
+        console.log(id)
+        var arr = response.data
+        for (var i = 0; i < arr.length; i++) {
+
+          if (arr[i].itemCode == id) {
+            console.log(arr[i].name)
+            that.setState({
+              itemName: arr[i].name,
+              itemQuantity: arr[i].quantity,
+              status: arr[i].status,
+            })
+          }
+        }
+
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  getData = async () => {
+    var itemID = this.props.match.params.id
+    var that = this;
+    try {
+      axios({
+        method: 'GET',
+        url: 'http://localhost:5000/api/history/' + itemID,
+
+      }).then(function (response) {
+        console.log(response.data.original)
+        var arr = response.data.original
+        var tempArr = []
+        for (var i = 0; i < arr.length; i++) {
+          var tempObj = {
+            x: arr[i].timestamp,
+            y: arr[i].amount
+          }
+          tempArr.push(tempObj)
+          if (i === arr.length - 1) {
+            that.setState({
+              loading: false,
+              s1: {
+                ...that.state.s1,
+                data: tempArr
+
+              }
+            })
+          }
+        }
+      })
+    } catch (error) {
+      console.error(error)
     }
   }
   componentDidMount() {
     console.log(this.props.match.params.id)
-    var arr = payload.original
-    for (var i = 0; i < arr.length; i++) {
-      var tempObj = {
-        x: arr[i].timestamp,
-        y: arr[i].amount
-      }
-      s1.data.push(tempObj)
-      if (i === arr.length - 1) {
-        this.setState({
-          loading: false
-        })
-      }
-    }
+
+    this.getData()
+    this.getItem(this.props.match.params.id)
+
   }
   render() {
+    const line = {
+      datasets: [this.state.s1, s2, s3],
+    };
     return (
       <div className="animated fadeIn">
         <Card>
           <CardHeader>
-            Item Name
-            <div className="card-header-actions">
-              <Badge color="success" className="float-right">In Stock</Badge>
-            </div>
-          </CardHeader>
-          <CardBody>
-            <p>Code: 123123</p>
-            <p>Quantity: 30</p>
 
-          </CardBody>
-        </Card>
-        <Card>
-          <CardHeader>
-            Item Demand
-              <div className="card-header-actions">
+            <h3><b> {this.state.itemName}</b></h3>
+            {this.props.match.params.id} <br />
+            Quantity: {this.state.itemQuantity}
+
+            <div className="card-header-actions">
               <a href="http://www.chartjs.org" className="card-header-action">
-                <small className="text-muted">docs</small>
+                <small className="text-muted"> {this.state.status === 'Ordered' && <Badge color="primary">Ordered</Badge>}
+                  {this.state.status === 'Out of Stock' && <Badge color="danger">Out of Stock</Badge>}
+                  {this.state.status === 'In stock' && <Badge color="success">In Stock</Badge>}
+                  {this.state.status === 'Low on Stock' && <Badge color="warning">Low on Stock</Badge>}
+                </small>
               </a>
             </div>
-          </CardHeader>
+          </CardHeader >
           {
-            !this.state.loading && <CardBody>
-              <div className="chart-wrapper">
+            !this.state.loading && <CardBody >
+              <div>
                 <Line data={line} options={options} />
               </div>
             </CardBody>
@@ -133,5 +162,11 @@ class Item extends Component {
     );
   }
 }
+
+function sortFunction(a, b) {
+  var dateA = new Date(a.date).getTime();
+  var dateB = new Date(b.date).getTime();
+  return dateA > dateB ? 1 : -1;
+};
 
 export default Item;

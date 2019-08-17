@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Badge, Card, CardBody, CardHeader, Col, Modal, ModalBody, ModalFooter, ModalHeader, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 class InventoryList extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class InventoryList extends Component {
       danger: false,
       info: false,
       radioSelected: 2,
+      tableData: []
     };
 
     this.togglePrimary = this.togglePrimary.bind(this);
@@ -24,6 +26,24 @@ class InventoryList extends Component {
     this.toggleWarning = this.toggleWarning.bind(this);
     this.toggleDanger = this.toggleDanger.bind(this);
     this.toggleInfo = this.toggleInfo.bind(this);
+    this.getData()
+  }
+
+  getData = async () => {
+    var that = this;
+    try {
+      axios({
+        method: 'GET',
+        url: 'http://localhost:5000/api/inventory',
+
+      }).then(function (response) {
+        that.setState({
+          tableData: response.data
+        })
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   toggle() {
@@ -73,20 +93,6 @@ class InventoryList extends Component {
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   render() {
-    const tableItems = [
-      {
-        name: "Egg",
-        itemCode: "123456789",
-        quantity: 40,
-        status: "Ordered"
-      },
-      {
-        name: "Ice Cream",
-        itemCode: "12349",
-        quantity: 50,
-        status: "In stock"
-      }
-    ]
     return (
       <div className="animated fadeIn">
         <Col xs="12" lg="7">
@@ -106,8 +112,8 @@ class InventoryList extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {tableItems.map((item, index) => {
-                    const itemLink = `/item/${item.itemCode}`
+                  {this.state.tableData != [] && this.state.tableData.map((item, index) => {
+                    const itemLink = `inventorylist/item/${item.itemCode}`
                     return (
                       <tr>
                         <td><Link to={itemLink}>{item.name}</Link></td>
@@ -158,5 +164,6 @@ class InventoryList extends Component {
     );
   }
 }
+
 
 export default InventoryList;
