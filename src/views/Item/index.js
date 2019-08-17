@@ -49,8 +49,13 @@ class Item extends Component {
       graphData: [],
       tableData: [],
       s1: {
-        label: 'Original',
+        label: 'Demand',
         borderColor: 'blue',
+        data: []
+      },
+      s2: {
+        label: 'Demand (Machine Learning)',
+        borderColor: 'yellow',
         data: []
       }
 
@@ -65,12 +70,10 @@ class Item extends Component {
         url: 'http://localhost:5000/api/inventory',
 
       }).then(function (response) {
-        console.log(id)
         var arr = response.data
         for (var i = 0; i < arr.length; i++) {
 
           if (arr[i].itemCode == id) {
-            console.log(arr[i].name)
             that.setState({
               itemName: arr[i].name,
               itemQuantity: arr[i].quantity,
@@ -84,6 +87,41 @@ class Item extends Component {
       console.error(error)
     }
   }
+
+  getPrediction = async () => {
+    var itemID = this.props.match.params.id
+    var that = this;
+    try {
+      axios({
+        method: 'GET',
+        url: 'http://localhost:5000/api/history/' + itemID,
+
+      }).then(function (response) {
+        console.log(response.data.machine)
+        var arr = response.data.machine
+        var tempArr = []
+        for (var i = 0; i < arr.length; i++) {
+          var tempObj = {
+            x: arr[i].timestamp,
+            y: arr[i].amount
+          }
+          tempArr.push(tempObj)
+          if (i === arr.length - 1) {
+            that.setState({
+              loading: false,
+              s2: {
+                ...that.state.s2,
+                data: tempArr
+              }
+            })
+          }
+        }
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   getData = async () => {
     var itemID = this.props.match.params.id
     var that = this;
@@ -96,7 +134,9 @@ class Item extends Component {
         console.log(response.data.original)
         var arr = response.data.original
         var tempArr = []
+        var total = 0;
         for (var i = 0; i < arr.length; i++) {
+          total += arr[i]
           var tempObj = {
             x: arr[i].timestamp,
             y: arr[i].amount
@@ -122,12 +162,13 @@ class Item extends Component {
     console.log(this.props.match.params.id)
 
     this.getData()
+    this.getPrediction()
     this.getItem(this.props.match.params.id)
 
   }
   render() {
     const line = {
-      datasets: [this.state.s1, s2, s3],
+      datasets: [this.state.s1, this.state.s2, s3],
     };
     return (
       <div className="animated fadeIn">
