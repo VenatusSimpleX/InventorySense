@@ -7,7 +7,7 @@ class User extends Component {
 
   render() {
 
-    const user = usersData.find( user => user.id.toString() === this.props.match.params.id)
+    const user = usersData.find(user => user.id.toString() === this.props.match.params.id)
 
     const userDetails = user ? Object.entries(user) : [['id', (<span><i className="text-muted icon-ban"></i> Not found</span>)]]
 
@@ -20,20 +20,20 @@ class User extends Component {
                 <strong><i className="icon-info pr-1"></i>User id: {this.props.match.params.id}</strong>
               </CardHeader>
               <CardBody>
-                  <Table responsive striped hover>
-                    <tbody>
-                      {
-                        userDetails.map(([key, value]) => {
-                          return (
-                            <tr key={key}>
-                              <td>{`${key}:`}</td>
-                              <td><strong>{value}</strong></td>
-                            </tr>
-                          )
-                        })
-                      }
-                    </tbody>
-                  </Table>
+                <Table responsive striped hover>
+                  <tbody>
+                    {
+                      userDetails.map(([key, value]) => {
+                        return (
+                          <tr key={key}>
+                            <td>{`${key}:`}</td>
+                            <td><strong>{value}</strong></td>
+                          </tr>
+                        )
+                      })
+                    }
+                  </tbody>
+                </Table>
               </CardBody>
             </Card>
           </Col>

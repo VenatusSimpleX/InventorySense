@@ -21,9 +21,9 @@ const BrandButtons = React.lazy(() => import('./views/Buttons/BrandButtons'));
 const ButtonDropdowns = React.lazy(() => import('./views/Buttons/ButtonDropdowns'));
 const ButtonGroups = React.lazy(() => import('./views/Buttons/ButtonGroups'));
 const Buttons = React.lazy(() => import('./views/Buttons/Buttons'));
-const Charts = React.lazy(() => import('./views/Charts'));
+const Item = React.lazy(() => import('./views/Item/index'));
 const Dashboard = React.lazy(() => import('./views/Dashboard'));
-const InventoryList = React.lazy(() => import('./views/InventoryList'));
+const InventoryList = React.lazy(() => import('./views/InventoryList/index'));
 const CoreUIIcons = React.lazy(() => import('./views/Icons/CoreUIIcons'));
 const Flags = React.lazy(() => import('./views/Icons/Flags'));
 const FontAwesome = React.lazy(() => import('./views/Icons/FontAwesome'));
@@ -78,8 +78,8 @@ const routes = [
   { path: '/notifications/badges', name: 'Badges', component: Badges },
   { path: '/notifications/modals', name: 'Modals', component: Modals },
   { path: '/widgets', name: 'Widgets', component: Widgets },
-  { path: '/charts', name: 'Charts', component: Charts },
-  { path: '/users', exact: true,  name: 'Users', component: Users },
+  { path: '/item', name: 'Item', component: Item },
+  { path: '/users', exact: true, name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
 ];
 
